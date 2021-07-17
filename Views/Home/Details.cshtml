@@ -1,0 +1,41 @@
+﻿@model DIS_Group10.Models.Park
+
+@{ ViewData["Title"] = "Details"; }
+
+<section >
+    <header class="align-center">
+        <br><br> <br>
+        <center><h2 Style="color:rgb(94.12%,42.35%,0%)">@Html.DisplayFor(model => model.fullName)</h2></center>
+        <br>
+        <center><strong><h4>Departments and degrees offered by the Institution </h4></strong></center>
+    </header>
+    <h4></h4>
+    <div class="table-wrapper">
+        <table class="alt">
+            <center>
+            <thead>
+                <tr>
+                    <th>Department Name</th>
+                    <th><center>Code</center></th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model.activities)
+                {
+    <tr>
+        <td> @Html.DisplayFor(modelItem => item.activity.name)</td>
+        <td>@Html.DisplayFor(modelItem => item.activity.ID)</td>
+    </tr>}
+
+
+            </tbody>
+            </center>
+        </table>
+        <div class="card-action">
+            <a asp-action="Edit" asp-route-id="@Model.ID">Update</a> |
+            <a asp-action="Create" >Add</a> |
+            <a asp-action="Delete" asp-route-id="@Model.ID">Delete</a>
+        </div>
+    </div>
+</section>

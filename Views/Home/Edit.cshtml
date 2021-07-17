@@ -1,0 +1,92 @@
+﻿@model DIS_Group10.Models.UpdatePark
+
+@{ ViewData["Title"] = "Edit"; }
+<body>
+
+    <section class="sub-heading">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2></h2>
+                    <p></p>
+                </div>
+            </div>
+        </div><!-- END container -->
+    </section>
+    <section id="model" class="page-section">
+        <div class="container">
+
+            <div class="row">
+                <div class="heading text-center">
+                    <!-- Heading -->
+                    <br><br><br>
+                    
+                </div>
+                <div class="col-sm-12">
+
+                </div>
+            </div>
+
+
+        </div>
+        <!--/.container-->
+    </section>
+    <!--  -->
+    <div class="col-sm-12">
+
+    </div>
+    <div class="container-fluid">
+        <div class="card text-center">
+            <div class="card-body">
+                <h4 class="card-title text-center">Please Update The College Details Below</h4>
+
+                <form method="post" asp-controller="Home" asp-action="Edit">
+                    <div class="form-group">
+                        <label asp-for="fullName">Name of the College</label>
+                        <div>
+                            <textarea class="form-control" asp-for="fullName" rows="1"></textarea>
+                          
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="parkCode">City</label>
+                        <div>
+                            <textarea class="form-control" asp-for="parkCode" rows="1"></textarea>
+                            <span asp-validation-for="parkCode"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="statenames">State</label>
+                        <div>
+                            <select multiple asp-for="statenames">
+                                @foreach (var item in ViewBag.statedict.Keys)
+                                {
+                    <option value="@item">@ViewBag.statedict[item]</option>}
+                            </select>
+                            <span asp-validation-for="statenames"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="activitynames">Activities</label>
+                        <div>
+                            <select multiple asp-for="activitynames">
+                                @foreach (var item in ViewBag.actnames)
+                                {
+                    <option value="@item">@item</option>}
+                            </select>
+                            <span asp-validation-for="activitynames"></span>
+                        </div>
+                    </div>
+
+                    <div class="col text-center">
+                        <button class="btn btn-danger btn-lg" type="submit" name="action"> Click to Submit Updates </button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
