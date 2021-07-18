@@ -45,7 +45,7 @@ namespace DIS_Group10.DataAccess
                 return;
             }
 
-            string uri = BASE_URL + "&school.state=NJ&_fields=school.name,school.city,school.state,id,programs.cip_4_digit.title,programs.cip_4_digit.code";
+            string uri = BASE_URL + "&id=132374,103893,222178,219596&_fields=school.name,school.city,school.state,id,programs.cip_4_digit.title,programs.cip_4_digit.code";
             string responsebody = "";
             httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Accept.Clear();
@@ -100,9 +100,9 @@ namespace DIS_Group10.DataAccess
                         {
                             foreach (JObject jsonactivity in activities)
                             {
-                                   Activity activity = context.Activities.Where(c => c.ID == (string)jsonactivity["code"]).FirstOrDefault();
+                                   Activity activity = context.Activities.Where(c => c.ID != (string)jsonactivity["code"]).FirstOrDefault();
 
-                                if (i < 1)
+                                if (i < 4)
                                 {
                                     i++;
                                     activity = new Activity()
@@ -112,15 +112,15 @@ namespace DIS_Group10.DataAccess
                                     };
                                     context.Activities.Add(activity);
                                     context.SaveChanges();
-                                }
+
                                     ParkActivity parkactivity = new ParkActivity
                                     {
                                         activity = activity,
                                         park = park
                                     };
-                         
+
                                     context.ParkActivities.Add(parkactivity);
-                                
+                                }
                             }
                         }
                     }
